@@ -1,164 +1,242 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skycat Stresser</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Profil Ovan Sev Farel</title>
     <style>
-        html {
-            scroll-behavior: smooth;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
+
         body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-        }
-        .custom-card {
-            background: linear-gradient(145deg, #111627, #090c16);
-            box-shadow: 4px 4px 10px #05080f, -4px -4px 10px #141b2d;
-            transition: transform 0.2s ease-in-out;
-        }
-        .custom-card:hover {
-            transform: scale(1.05);
-        }
-        .thumbnail-container {
             display: flex;
             justify-content: center;
-            margin-top: 3rem;
+            align-items: center;
+            height: 100vh;
+            background: url('https://files.catbox.moe/ylmcpe.webp') center/cover no-repeat;
         }
-        .thumbnail {
-            width: 90%;
-            max-width: 800px;
-            height: auto;
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            width: 350px;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            display: block;
+            margin: 0 auto 10px;
+            background: url('https://files.catbox.moe/d2w8lm.jpg') center/cover no-repeat;
+            animation: popIn 1.2s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .name-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid black;
+            animation: typing 2s steps(15, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: fadeIn 1.5s ease-out forwards 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+            display: inline-block;
+        }
+
+        p {
+            color: gray;
+            font-size: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeSlideIn 1s ease-out forwards;
+        }
+
+        .social-icons a:nth-child(1) { animation-delay: 2s; }
+        .social-icons a:nth-child(2) { animation-delay: 2.5s; }
+        .social-icons a:nth-child(3) { animation-delay: 3s; }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            opacity: 0;
+            animation: fadeSlideIn 1s ease-out forwards;
+        }
+
+        .buttons button:nth-child(1) { animation-delay: 3.5s; }
+        .buttons button:nth-child(2) { animation-delay: 4s; }
+
+        .follow-btn {
+            background: #ff007f;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 0, 127, 0.5);
+        }
+
+        .message-btn {
+            background: #007bff;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            font-size: 16px;
+            color: gray;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .stats div {
+            padding: 10px 15px;
+            background: #f8f9fa;
             border-radius: 10px;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeSlideIn 1s ease-out forwards;
+        }
+
+        .stats div:nth-child(1) { animation-delay: 4.5s; }
+        .stats div:nth-child(2) { animation-delay: 5s; }
+        .stats div:nth-child(3) { animation-delay: 5.5s; }
+
+        .stats div:last-child {
+            background: #ffd700;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Pemutar Musik */
+        .music-player {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeSlideIn 1s ease-out forwards 6s;
+        }
+
+        .music-player audio {
+            width: 100%;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body class="text-center p-6">
-    
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-center p-4">
-        <div class="text-white text-lg">
-            Skycat Stresser
-        </div>
-    
-        <!-- GIF Container -->
-        <div class="flex flex-col md:flex-row flex-wrap justify-center items-center space-y-4 md:space-y-0 md:space-x-4 mt-10">
-            <a href="https://t.me/EXECUTOR_STRESSER" target="_blank">
-                <img src="https://img.vpsindo.host/pub/qFQ0c6Jw5B.gif" alt="Ad 1" class="rounded-lg w-35 h-auto">
+<body>
+
+    <div class="card">
+        <div class="profile-img"></div>
+
+        <h2 class="name-container">Ovan Sev Farel</h2>
+
+        <p class="fade-in">Modding & Programmer</p>
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/ovan.sirait.7" target="_blank">
+                <img src="https://files.catbox.moe/adecrk.jpg" alt="Facebook">
             </a>
-            <a href="https://t.me/skycatstresser" target="_blank">
-                <img src="https://img.vpsindo.host/pub/LE736eO59F.gif" alt="Ad 2" class="rounded-lg w-35 h-auto">
+            <a href="https://t.me/OwnTelegramX" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
             </a>
-            <a href="https://t.me/zerostresserc2" target="_blank">
-                <img src="https://img.vpsindo.host/pub/TGMe9qsj77.gif" alt="Ad 3" class="rounded-lg w-35 h-auto">
+            <a href="https://instagram.com/accelgyz" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
             </a>
         </div>
-    
-        <a href="https://l7skycat.us/login" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg mt-4 md:mt-0">
-            Sign In
-        </a>
-    </header>
-    
 
-    <!-- Hero Section -->
-    <main class="mt-12">
-        <h1 class="text-3xl text-white">Better than never</h1>
-        <p class="mt-2 text-gray-400">
-            One of the best professional services for DDoS for Hire<br/>
-            You won't find cheaper and better
-        </p>
-
-        <!-- Stats -->
-        <div class="flex justify-center space-x-6 mt-10">
-            <div class="custom-card p-6 rounded-lg text-center">
-                <i class="fas fa-plane text-4xl text-blue-400"></i>
-                <p class="mt-2 text-xl text-white">12</p>
-                <p class="text-gray-400">Total methods</p>
-            </div>
-            <div class="custom-card p-6 rounded-lg text-center">
-                <i class="fas fa-server text-4xl text-blue-400"></i>
-                <p class="mt-2 text-xl text-white">∞</p>
-                <p class="text-gray-400">Total servers</p>
-            </div>
-            <div class="custom-card p-6 rounded-lg text-center">
-                <i class="fas fa-users text-4xl text-blue-400"></i>
-                <p class="mt-2 text-xl text-white">100</p>
-                <p class="text-gray-400">Total Slots</p>
-            </div>
+        <div class="buttons">
+            <button class="follow-btn">Follow</button>
+            <button class="message-btn">Message</button>
         </div>
 
-        <!-- Testimonial -->
-        <blockquote class="mt-12 text-gray-400">
-            “ We provide the best services for testing your web application <br/>
-            using the most advanced methods nowadays. “
-            <br/>
-            <a href="https://t.me/udpflood53" class="text-blue-500">Xyrann, Skycat CEO</a>
-        </blockquote>
-
-        <!-- Thumbnail Image -->
-        <div class="thumbnail-container">
-            <img src="https://img.vpsindo.host/pub/PSBojwOdjl.jpg" alt="Skycat Stresser Preview" class="thumbnail">
+        <div class="stats">
+            <div>❤️ 279K</div>
+            <div>💬 1.8M</div>
+            <div onclick="alert('Link profil telah disalin!')">🔗 Share</div>
         </div>
-        
-        <!-- Thumbnail Description -->
-        <p class="mt-4 text-gray-400 text-lg">
-            Experience the power of Skycat Stresser. Our platform provides the most advanced testing tools <br/>
-            to evaluate and improve your web application's security.
-        </p>
 
-        <!-- How It Works -->
-        <section class="mt-12">
-            <h2 class="text-2xl text-white">How it Works</h2>
-            <p class="mt-2 text-gray-400">
-                When registering, you get free access with limited features.<br/>
-                In order to unlock paid features, you should buy access.
-            </p>
+        <!-- Pemutar Musik -->
+        <div class="music-player">
+            <audio controls>
+                <source src="https://files.catbox.moe/28pc2r.mp3" type="audio/mp3">
+                Browser Anda tidak mendukung pemutar audio.
+            </audio>
+        </div>
 
-            <div class="flex justify-center space-x-10 mt-10">
-                <!-- Step 1 -->
-                <div class="text-center">
-                    <div class="custom-card p-6 rounded-lg">
-                        <i class="fas fa-user-check text-4xl text-blue-400"></i>
-                    </div>
-                    <p class="mt-2 text-xl text-blue-300">1</p>
-                    <p class="text-white text-lg">Auth & Register</p>
-                    <p class="text-gray-400">Registration in just 15 seconds!<br/>Login to get free access.</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="text-center">
-                    <div class="custom-card p-6 rounded-lg">
-                        <i class="fas fa-dollar-sign text-4xl text-blue-400"></i>
-                    </div>
-                    <p class="mt-2 text-xl text-blue-300">2</p>
-                    <p class="text-white text-lg">Paid Plan</p>
-                    <p class="text-gray-400">Make a deposit with some currency<br/>Open purchase page and select a plan.</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="text-center">
-                    <div class="custom-card p-6 rounded-lg">
-                        <i class="fas fa-star text-4xl text-blue-400"></i>
-                    </div>
-                    <p class="mt-2 text-xl text-blue-300">3</p>
-                    <p class="text-white text-lg">Enjoy App</p>
-                    <p class="text-gray-400">Now you can click panel<br/>And enjoy all the features.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="mt-12 text-gray-400 text-sm">
-        <p>© 2025 Skycat Stresser</p>
-        <p>Support</p>
-    </footer>
-<script src="https://zerostresser.eu/assets/js/smoothscroll.min.js"></script>
 </body>
 </html>
